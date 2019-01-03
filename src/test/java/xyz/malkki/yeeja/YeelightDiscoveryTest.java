@@ -109,4 +109,15 @@ public class YeelightDiscoveryTest {
         List<YeelightDevice> yeelights = yeelightDiscovery.discover();
         assertEquals(2, yeelights.size());
     }
+
+    @Test
+    public void testDiscoveryEmpty() throws IOException {
+        DatagramSocket mockDatagramSocket = mock(DatagramSocket.class);
+        doThrow(new SocketTimeoutException()).when(mockDatagramSocket).receive(any(DatagramPacket.class));
+
+        when(mockDatagramSocketFactory.create()).thenReturn(mockDatagramSocket);
+
+        List<YeelightDevice> yeelights = yeelightDiscovery.discover();
+        assertEquals(0, yeelights.size());
+    }
 }
