@@ -1,4 +1,4 @@
-package xyz.malkki.yeeja;
+package xyz.malkki.yeeja.network;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;

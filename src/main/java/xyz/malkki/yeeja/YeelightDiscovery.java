@@ -1,16 +1,15 @@
 package xyz.malkki.yeeja;
 
-import javax.xml.crypto.Data;
+import xyz.malkki.yeeja.network.DatagramSocketFactory;
+import xyz.malkki.yeeja.network.InetAddressFactory;
+
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetSocketAddress;
 import java.net.SocketTimeoutException;
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 import static xyz.malkki.yeeja.YeelightConstants.*;
 
