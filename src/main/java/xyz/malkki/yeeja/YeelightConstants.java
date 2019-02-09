@@ -1,8 +1,22 @@
 package xyz.malkki.yeeja;
 
-class YeelightConstants {
-    static final String LINE_BREAK = "\r\n";
+/**
+ * Constant values related to Yeelight
+ */
+public class YeelightConstants {
+    private YeelightConstants() {}
 
-    static final String YEELIGHT_ADDRESS = "239.255.255.250";
-    static final int YEELIGHT_PORT = 1982;
+    /**
+     * Line break that is used by Yeelight protocol
+     */
+    public static final String LINE_BREAK = "\r\n";
+
+    /**
+     * Multicast address used by Yeelight device discovery
+     */
+    public static final String YEELIGHT_ADDRESS = "239.255.255.250";
+    /**
+     * Multicast port used by Yeelight device discovery
+     */
+    public static final int YEELIGHT_PORT = 1982;
 }
