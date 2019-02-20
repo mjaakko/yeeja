@@ -1,4 +1,4 @@
-package xyz.malkki.yeeja.utils;
+package xyz.malkki.yeeja.internal;
 
 public class ThreadUtils {
     private ThreadUtils() {}

@@ -1,8 +1,8 @@
 package xyz.malkki.yeeja.connection;
 
 import xyz.malkki.yeeja.YeelightDevice;
-import xyz.malkki.yeeja.utils.CastFunction;
-import xyz.malkki.yeeja.utils.MathUtils;
+import xyz.malkki.yeeja.internal.CastFunction;
+import xyz.malkki.yeeja.internal.MathUtils;
 
 import java.util.*;
 import java.util.function.Function;

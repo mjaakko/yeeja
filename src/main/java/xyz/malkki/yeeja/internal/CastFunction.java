@@ -1,4 +1,4 @@
-package xyz.malkki.yeeja.utils;
+package xyz.malkki.yeeja.internal;
 
 import java.util.function.Function;
 

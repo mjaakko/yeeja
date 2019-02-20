@@ -1,6 +1,7 @@
-package xyz.malkki.yeeja.utils;
+package xyz.malkki.yeeja.internal;
 
 import org.junit.Test;
+import xyz.malkki.yeeja.internal.MathUtils;
 
 import static org.junit.Assert.*;
 
