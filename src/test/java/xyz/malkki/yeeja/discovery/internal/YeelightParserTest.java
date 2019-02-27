@@ -1,6 +1,7 @@
 package xyz.malkki.yeeja.discovery.internal;
 
 import org.junit.Test;
+import xyz.malkki.yeeja.ColorMode;
 import xyz.malkki.yeeja.YeelightConstants;
 import xyz.malkki.yeeja.discovery.YeelightDevice;
 
@@ -84,7 +85,7 @@ public class YeelightParserTest {
 
         assertEquals(13, yeelight.getSupportedFunctions().size());
         assertEquals(YeelightDevice.YeelightModel.BSLAMP, yeelight.getModel());
-        assertEquals(YeelightDevice.ColorMode.COLOR_TEMPERATURE, yeelight.getColorMode());
+        assertEquals(ColorMode.COLOR_TEMPERATURE, yeelight.getColorMode());
         assertEquals(55443, yeelight.getPort());
     }
 
@@ -94,7 +95,7 @@ public class YeelightParserTest {
 
         assertEquals(2, yeelights.size());
 
-        assertTrue(yeelights.stream().anyMatch(yeelight -> yeelight.getColorMode().equals(YeelightDevice.ColorMode.COLOR_TEMPERATURE)));
+        assertTrue(yeelights.stream().anyMatch(yeelight -> yeelight.getColorMode().equals(ColorMode.COLOR_TEMPERATURE)));
 
         assertTrue(yeelights.stream().anyMatch(yeelight -> yeelight.getModel().equals(YeelightDevice.YeelightModel.BSLAMP)));
 

@@ -1,12 +1,13 @@
 package xyz.malkki.yeeja.discovery.internal;
 
+import xyz.malkki.yeeja.ColorMode;
 import xyz.malkki.yeeja.discovery.YeelightDevice;
 
 import java.net.URI;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static xyz.malkki.yeeja.YeelightConstants.*;
+import static xyz.malkki.yeeja.YeelightConstants.LINE_BREAK;
 
 public class YeelightParser {
     private YeelightParser() {}
@@ -40,7 +41,7 @@ public class YeelightParser {
                 new HashSet<String>(Arrays.asList(map.get("support").split(" "))),
                 "on".equals(map.get("power")),
                 Integer.parseInt(map.get("bright")),
-                YeelightDevice.ColorMode.findByMode(Integer.parseInt(map.get("color_mode"))),
+                ColorMode.findByMode(Integer.parseInt(map.get("color_mode"))),
                 Integer.parseInt(map.get("ct")),
                 Integer.parseInt(map.get("rgb")),
                 Integer.parseInt(map.get("hue")),

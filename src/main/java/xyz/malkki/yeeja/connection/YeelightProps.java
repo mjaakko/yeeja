@@ -1,6 +1,6 @@
 package xyz.malkki.yeeja.connection;
 
-import xyz.malkki.yeeja.discovery.YeelightDevice;
+import xyz.malkki.yeeja.ColorMode;
 import xyz.malkki.yeeja.internal.CastFunction;
 import xyz.malkki.yeeja.internal.MathUtils;
 
@@ -15,7 +15,7 @@ public class YeelightProps {
     public static final YeelightPropMeta RGB = YeelightPropMeta.create("rgb", CastFunction.forType(Double.class).andThen(MathUtils::doubleToInt));
     public static final YeelightPropMeta HUE = YeelightPropMeta.create("hue", CastFunction.forType(Double.class).andThen(MathUtils::doubleToInt));
     public static final YeelightPropMeta SATURATION = YeelightPropMeta.create("sat", CastFunction.forType(Double.class).andThen(MathUtils::doubleToInt));
-    public static final YeelightPropMeta COLOR_MODE = YeelightPropMeta.create("color_mode", cm -> YeelightDevice.ColorMode.findByMode((int)Math.round((double)cm)));
+    public static final YeelightPropMeta COLOR_MODE = YeelightPropMeta.create("color_mode", cm -> ColorMode.findByMode((int)Math.round((double)cm)));
     public static final YeelightPropMeta FLOWING = YeelightPropMeta.create("flowing", flowing -> (double)flowing == 1);
     public static final YeelightPropMeta DELAY_OFF = YeelightPropMeta.create("delay_off", CastFunction.forType(Double.class).andThen(MathUtils::doubleToInt));
     public static final YeelightPropMeta FLOW_PARAMS = YeelightPropMeta.create("flow_params", CastFunction.forType(String.class));
@@ -25,7 +25,7 @@ public class YeelightProps {
     public static final YeelightPropMeta BACKGROUND_FLOWING = YeelightPropMeta.create("bg_flowing", flowing -> (double)flowing == 1);
     public static final YeelightPropMeta BACKGROUND_FLOW_PARAMS = YeelightPropMeta.create("bg_flow_params", CastFunction.forType(String.class));
     public static final YeelightPropMeta BACKGROUND_COLOR_TEMPERATURE = YeelightPropMeta.create("bg_ct", CastFunction.forType(Double.class).andThen(MathUtils::doubleToInt));
-    public static final YeelightPropMeta BACKGROUND_COLOR_MODE = YeelightPropMeta.create("bg_lmode", cm -> YeelightDevice.ColorMode.findByMode((int)Math.round((double)cm)));
+    public static final YeelightPropMeta BACKGROUND_COLOR_MODE = YeelightPropMeta.create("bg_lmode", cm -> ColorMode.findByMode((int)Math.round((double)cm)));
     public static final YeelightPropMeta BACKGROUND_BRIGHTNESS = YeelightPropMeta.create("bg_bright", CastFunction.forType(Double.class).andThen(MathUtils::doubleToInt));
     public static final YeelightPropMeta BACKGROUND_RGB = YeelightPropMeta.create("bg_rgb", CastFunction.forType(Double.class).andThen(MathUtils::doubleToInt));
     public static final YeelightPropMeta BACKGROUND_HUE = YeelightPropMeta.create("bg_hue", CastFunction.forType(Double.class).andThen(MathUtils::doubleToInt));
