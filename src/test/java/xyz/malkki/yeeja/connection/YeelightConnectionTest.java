@@ -13,6 +13,7 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
 import java.util.function.Function;
 
 import static org.junit.Assert.*;
@@ -195,6 +196,8 @@ public class YeelightConnectionTest {
             return null;
         }).when(mockSocket).connect(any(InetSocketAddress.class));
 
+        CountDownLatch latch = new CountDownLatch(1);
+
         InputStream mockInputStream = mock(InputStream.class);
         when(mockInputStream.read(any(byte[].class), anyInt(), anyInt())).thenAnswer(new Answer() {
             int index = 0;
@@ -202,6 +205,8 @@ public class YeelightConnectionTest {
             @Override
             public Object answer(InvocationOnMock invocation) throws Throwable {
                 try {
+                    //Wait until the command has been sent
+                    latch.await();
                     byte[] output = invocation.getArgument(0);
                     output[(int)invocation.getArgument(1)] = ERROR_RESPONSE[index++];
                     return 1;
@@ -213,6 +218,11 @@ public class YeelightConnectionTest {
         when(mockSocket.getInputStream()).thenReturn(mockInputStream);
 
         OutputStream mockOutputStream = mock(OutputStream.class);
+        doAnswer(invocation -> {
+            //Simulate real connection by starting to read the response after the command has been sent
+            latch.countDown();
+            return null;
+        }).when(mockOutputStream).write(any(byte[].class));
         when(mockSocket.getOutputStream()).thenReturn(mockOutputStream);
 
         YeelightConnection yeelightConnection = new YeelightConnection(() -> mockSocket, address -> {
@@ -258,6 +268,8 @@ public class YeelightConnectionTest {
             return null;
         }).when(mockSocket).connect(any(InetSocketAddress.class));
 
+        CountDownLatch latch = new CountDownLatch(1);
+
         InputStream mockInputStream = mock(InputStream.class);
         when(mockInputStream.read(any(byte[].class), anyInt(), anyInt())).thenAnswer(new Answer() {
             int index = 0;
@@ -265,6 +277,8 @@ public class YeelightConnectionTest {
             @Override
             public Object answer(InvocationOnMock invocation) throws Throwable {
                 try {
+                    //Wait until the command has been sent
+                    latch.await();
                     byte[] output = invocation.getArgument(0);
                     output[(int)invocation.getArgument(1)] = COMMAND_RESPONSE[index++];
                     return 1;
@@ -276,6 +290,11 @@ public class YeelightConnectionTest {
         when(mockSocket.getInputStream()).thenReturn(mockInputStream);
 
         OutputStream mockOutputStream = mock(OutputStream.class);
+        doAnswer(invocation -> {
+            //Simulate real connection by starting to read the response after the command has been sent
+            latch.countDown();
+            return null;
+        }).when(mockOutputStream).write(any(byte[].class));
         when(mockSocket.getOutputStream()).thenReturn(mockOutputStream);
 
         YeelightConnection yeelightConnection = new YeelightConnection(() -> mockSocket, address -> {
