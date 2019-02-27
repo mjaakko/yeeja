@@ -23,6 +23,11 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import static xyz.malkki.yeeja.internal.MathUtils.doubleToInt;
 
+/**
+ * Represents a connection to a Yeelight device.
+ *
+ * YeelightConnection can be used for running commands with {@link #runCommand(YeelightCommand)} or receiving notifications of changed properties with {@link #setNotificationListener(YeelightNotificationListener)}
+ */
 public class YeelightConnection implements AutoCloseable {
     private static final String THREAD_GROUP_NAME = "Yeelight-Connection-%s:%d";
 
@@ -49,6 +54,15 @@ public class YeelightConnection implements AutoCloseable {
 
     private YeelightNotificationListener notificationListener;
 
+    /**
+     * Helper function for connecting to a Yeelight device
+     * @param socketFactory Factory for creating socket for the connection
+     * @param inetAddressFactory Factory for generating InetAddress for the connection
+     * @param yeelightDevice Yeelight device to connect to
+     * @param notificationListener Notification listener for receiving notifications of changed properties
+     * @return Opened YeelightConnection
+     * @throws IOException If an IO error occurs
+     */
     public static YeelightConnection connect(SocketFactory socketFactory, InetAddressFactory inetAddressFactory, YeelightDevice yeelightDevice, YeelightNotificationListener notificationListener) throws IOException {
         YeelightConnection connection = new YeelightConnection(socketFactory, inetAddressFactory, yeelightDevice.getAddress(), yeelightDevice.getPort());
         connection.setNotificationListener(notificationListener);
@@ -57,6 +71,15 @@ public class YeelightConnection implements AutoCloseable {
         return connection;
     }
 
+    /**
+     * Constructs a YeelightConnection that will connect to specified address and port.
+     *
+     * The connection is not opened initially.
+     * @param socketFactory Factory for creating socket for the connection
+     * @param inetAddressFactory Factory for generating InetAddress for the connection
+     * @param address Address to connect to
+     * @param port Port to connect to
+     */
     public YeelightConnection(SocketFactory socketFactory, InetAddressFactory inetAddressFactory, String address, int port) {
         this.socketFactory = socketFactory;
         this.inetAddressFactory = inetAddressFactory;
@@ -64,6 +87,11 @@ public class YeelightConnection implements AutoCloseable {
         this.port = port;
     }
 
+    /**
+     * Opens connection to the Yeelight device
+     * @throws IOException If an IO error occurs
+     * @throws IllegalStateException If the connection was already opened, see {@link YeelightConnection#isOpen()}
+     */
     public void open() throws IOException {
         if (connectionOpen.get()) {
             throw new IllegalStateException("YeelightConnection was already opened");
@@ -106,10 +134,18 @@ public class YeelightConnection implements AutoCloseable {
         output.start();
     }
 
+    /**
+     * Checks if the connection is open
+     * @return true if the connection is open, false otherwise
+     */
     public boolean isOpen() {
         return connectionOpen.get();
     }
 
+    /**
+     * Closes the connection
+     * @throws IOException If an IO error occurs
+     */
     @Override
     public void close() throws IOException {
         connectionOpen.set(false);
@@ -119,6 +155,14 @@ public class YeelightConnection implements AutoCloseable {
         threadGroup.destroy();
     }
 
+    /**
+     * Sends the command to Yeelight device and returns command result
+     * @param command Command to send
+     * @param <R> Result type
+     * @return Command result
+     * @throws IOException If an IO error occurs
+     * @throws YeelightCommandException If the command was not run successfully
+     */
     public <R> R runCommand(YeelightCommand<R> command) throws IOException, YeelightCommandException {
         int commandId = commandIdCounter.getAndIncrement();
 
@@ -149,6 +193,11 @@ public class YeelightConnection implements AutoCloseable {
         }
     }
 
+    /**
+     * Sets a notification listener that will receive notifications when properties of a Yeelight device change
+     * @param notificationListener Notification listener
+     * @throws IllegalStateException If the connection was already opened
+     */
     public void setNotificationListener(YeelightNotificationListener notificationListener) {
         if (connectionOpen.get()) {
             throw new IllegalStateException("Cannot set notification listener after the connection is opened");
@@ -157,8 +206,20 @@ public class YeelightConnection implements AutoCloseable {
         this.notificationListener = notificationListener;
     }
 
+    /**
+     * Listener for receiving notifications of changed properties of a Yeelight device
+     */
     public interface YeelightNotificationListener {
+        /**
+         * Callback when Yeelight properties have changed
+         * @param props Properties that have changed
+         */
         void onNotification(YeelightProps props);
+
+        /**
+         * Callback when Yeelight connection fails due to an IO error
+         * @param exception IOException that caused the connection to fail
+         */
         void onError(IOException exception);
     }
 }

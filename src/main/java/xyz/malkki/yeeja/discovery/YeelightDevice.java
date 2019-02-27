@@ -1,10 +1,17 @@
 package xyz.malkki.yeeja.discovery;
 
 import xyz.malkki.yeeja.ColorMode;
+import xyz.malkki.yeeja.connection.YeelightConnection;
+import xyz.malkki.yeeja.connection.commands.YeelightCommand;
 
 import java.util.Objects;
 import java.util.Set;
 
+/**
+ * Represents a Yeelight device.
+ *
+ * Note that the values in this class are not updated if the Yeelight properties change. To get updated values, either run Yeelight discovery again or open {@link xyz.malkki.yeeja.connection.YeelightConnection} with {@link xyz.malkki.yeeja.connection.YeelightConnection#setNotificationListener(YeelightConnection.YeelightNotificationListener)} to this device
+ */
 public class YeelightDevice {
     private String address;
     private int port;
@@ -38,58 +45,115 @@ public class YeelightDevice {
         this.name = name;
     }
 
+    /**
+     * Gets the Yeelight host address
+     * @return Yeelight host address
+     */
     public String getAddress() {
         return address;
     }
 
+    /**
+     * Gets the Yeelight connection port
+     * @return Yeelight connection port
+     */
     public int getPort() {
         return port;
     }
 
+    /**
+     * Gets the Yeelight device ID
+     * @return Yeelight device ID
+     */
     public String getId() {
         return id;
     }
 
+    /**
+     * Gets the Yeelight model
+     * @return Yeelight model
+     */
     public YeelightModel getModel() {
         return model;
     }
 
+    /**
+     * Gets the firmware version of the Yeelight device
+     * @return Firmware version of the Yeelight device
+     */
     public int getFirmwareVersion() {
         return firmwareVersion;
     }
 
+    /**
+     * Gets a list of functions that can be used with the Yeelight device.
+     * @return List of functions that can be used with the Yeelight device
+     * @see YeelightCommand#getMethod()
+     */
     public Set<String> getSupportedFunctions() {
         return supportedFunctions;
     }
 
+    /**
+     * Gets the power status of the Yeelight device
+     * @return true if Yeelight is powered on, false otherwise
+     */
     public boolean isPower() {
         return power;
     }
 
+    /**
+     * Gets brightness of the Yeelight
+     * @return Brightness, 0-100
+     */
     public int getBrightness() {
         return brightness;
     }
 
+    /**
+     * Gets the color mode that the Yeelight is using
+     * @return Color mode
+     */
     public ColorMode getColorMode() {
         return colorMode;
     }
 
+    /**
+     * Gets the color temperature
+     * @return Color temperature
+     */
     public int getColorTemperature() {
         return colorTemperature;
     }
 
+    /**
+     * Gets the RGB color
+     * @return RGB color
+     */
     public int getRgb() {
         return rgb;
     }
 
+    /**
+     * Gets the hue
+     * @return Hue
+     */
     public int getHue() {
         return hue;
     }
 
+    /**
+     * Gets the saturation
+     * @return Saturation
+     */
     public int getSaturation() {
         return saturation;
     }
 
+    /**
+     * Gets the name of the Yeelight device
+     * @return Name of the Yeelight device
+     */
     public String getName() {
         return name;
     }
@@ -120,7 +184,29 @@ public class YeelightDevice {
         return Objects.hash(address, port, id, model, firmwareVersion, supportedFunctions, power, brightness, colorMode, colorTemperature, rgb, hue, saturation, name);
     }
 
+    /**
+     * Describes the model of a Yeelight device
+     */
     public enum YeelightModel {
-        MONO, COLOR, STRIPE, CEILING, BSLAMP
+        /**
+         * Represents a device that only supports brightness adjustment
+         */
+        MONO,
+        /**
+         * Represents a device that supports both color and color temperature adjustment
+         */
+        COLOR,
+        /**
+         * Represents a Yeelight LED strip
+         */
+        STRIPE,
+        /**
+         * Represents a Yeelight ceiling lamp
+         */
+        CEILING,
+        /**
+         * Represents a Yeelight bedside lamp
+         */
+        BSLAMP
     }
 }

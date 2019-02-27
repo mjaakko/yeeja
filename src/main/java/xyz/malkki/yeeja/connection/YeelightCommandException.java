@@ -2,10 +2,18 @@ package xyz.malkki.yeeja.connection;
 
 import java.util.Objects;
 
+/**
+ * Signals that the Yeelight command was not run successfully
+ */
 public class YeelightCommandException extends Exception {
     private int code;
     private String message;
 
+    /**
+     * Constructs a YeelightCommandException
+     * @param code Error code
+     * @param message Error message
+     */
     public YeelightCommandException(int code, String message) {
         super(message);
 
@@ -13,6 +21,10 @@ public class YeelightCommandException extends Exception {
         this.message = message;
     }
 
+    /**
+     * Gets the error code that was returned by Yeelight device
+     * @return Error code
+     */
     public int getCode() {
         return code;
     }

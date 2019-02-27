@@ -5,8 +5,22 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+/**
+ * Describes a color mode
+ */
 public enum ColorMode {
-    COLOR(1), COLOR_TEMPERATURE(2), HSV(3);
+    /**
+     * In COLOR mode, color is controlled with RGB values
+     */
+    COLOR(1),
+    /**
+     * In COLOR_TEMPERATURE mode, color is controlled with color temperature values
+     */
+    COLOR_TEMPERATURE(2),
+    /**
+     * In HSV mode, color is controlled with hue and saturation values
+     */
+    HSV(3);
 
     private int mode;
 

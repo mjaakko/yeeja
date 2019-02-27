@@ -21,20 +21,39 @@ public class YeelightDiscovery {
 
     private static final int RESPONSE_BUFFER_SIZE = 1024;
 
+    /**
+     * Default discovery timeout
+     */
     public static final int DISCOVERY_TIMEOUT_MILLIS = 5 * 1000;
 
     private DatagramSocketFactory datagramSocketFactory;
     private InetAddressFactory inetAddressFactory;
 
+    /**
+     * Constructs a new YeelightDiscovery for discovering Yeelight devices in local network
+     * @param datagramSocketFactory Factory for generating datagram socket that is used for Yeelight discovery
+     * @param inetAddressFactory Factory for creating InetAddress for Yeelight discovery protocol
+     */
     public YeelightDiscovery(DatagramSocketFactory datagramSocketFactory, InetAddressFactory inetAddressFactory) {
         this.datagramSocketFactory = datagramSocketFactory;
         this.inetAddressFactory = inetAddressFactory;
     }
 
+    /**
+     * Discovers Yeelight devices in local network with 5s timeout
+     * @return List of discovered Yeelight devices
+     * @throws IOException If an IO operation fails
+     */
     public List<YeelightDevice> discover() throws IOException {
         return discover(DISCOVERY_TIMEOUT_MILLIS);
     }
 
+    /**
+     * Discovers Yeelight devices in local network
+     * @param timeoutMillis Timeout (in milliseconds) for discovery
+     * @return List of discovered Yeelight devices
+     * @throws IOException If an IO operation fails
+     */
     public List<YeelightDevice> discover(int timeoutMillis) throws IOException {
         try (DatagramSocket ds = datagramSocketFactory.create()) {
             ds.setSoTimeout(timeoutMillis);

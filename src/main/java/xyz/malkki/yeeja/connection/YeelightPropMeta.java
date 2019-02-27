@@ -3,6 +3,10 @@ package xyz.malkki.yeeja.connection;
 import java.util.Objects;
 import java.util.function.Function;
 
+/**
+ * Represents a property type that Yeelight can have
+ * @param <T> Type of property value
+ */
 public class YeelightPropMeta<T> implements Function<Object, T> {
     private String name;
     private Function<Object, T> valueParser;
@@ -12,6 +16,10 @@ public class YeelightPropMeta<T> implements Function<Object, T> {
         this.valueParser = valueParser;
     }
 
+    /**
+     * Name of the property, i.e. property key
+     * @return Property key
+     */
     public String name() {
         return name;
     }

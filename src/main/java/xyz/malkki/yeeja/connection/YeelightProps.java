@@ -33,6 +33,9 @@ public class YeelightProps {
     public static final YeelightPropMeta NIGHTLIGHT_BRIGHTNESS = YeelightPropMeta.create("nl_br", CastFunction.forType(Double.class).andThen(MathUtils::doubleToInt));
     public static final YeelightPropMeta DAYLIGHT_MODE = YeelightPropMeta.create("active_mode", active -> (double)active == 0);
 
+    /**
+     * List of known properties that Yeelights can have
+     */
     public static final Map<String, YeelightPropMeta> KNOWN_PROPS = Arrays.asList(POWER,
             BRIGHTNESS,
             COLOR_TEMPERATURE,
@@ -65,22 +68,48 @@ public class YeelightProps {
         this.props = Collections.unmodifiableMap(props);
     }
 
+    /**
+     * Checks if the property is available
+     * @param propMeta Property type
+     * @return true if the property is available, false otherwise
+     */
     public boolean hasProp(YeelightPropMeta propMeta) {
         return hasProp(propMeta.name());
     }
 
+    /**
+     * Checks if the property is available
+     * @param key Property key
+     * @return true if the property is available, false otherwise
+     */
     public boolean hasProp(String key) {
         return props.containsKey(key);
     }
 
+    /**
+     * Gets a list of properties available in this object
+     * @return List of property keys
+     */
     public Set<String> getAvailableProps() {
         return props.keySet();
     }
 
+    /**
+     * Gets a property value
+     * @param propMeta Property type
+     * @param <T> Value type
+     * @return Property value
+     */
     public <T> T getProp(YeelightPropMeta<T> propMeta) {
         return getProp(propMeta.name());
     }
 
+    /**
+     * Gets a property value
+     * @param key Property key
+     * @param <T> Value type
+     * @return Property value
+     */
     public <T> T getProp(String key) {
         return (T)props.get(key);
     }
