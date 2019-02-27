@@ -1,7 +1,7 @@
 package xyz.malkki.yeeja.connection;
 
 import com.google.gson.Gson;
-import xyz.malkki.yeeja.YeelightDevice;
+import xyz.malkki.yeeja.discovery.YeelightDevice;
 import xyz.malkki.yeeja.connection.commands.YeelightCommand;
 import xyz.malkki.yeeja.connection.internal.CommandResponseRouter;
 import xyz.malkki.yeeja.connection.internal.InputThread;

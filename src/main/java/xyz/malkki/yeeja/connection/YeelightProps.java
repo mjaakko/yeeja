@@ -1,6 +1,6 @@
 package xyz.malkki.yeeja.connection;
 
-import xyz.malkki.yeeja.YeelightDevice;
+import xyz.malkki.yeeja.discovery.YeelightDevice;
 import xyz.malkki.yeeja.internal.CastFunction;
 import xyz.malkki.yeeja.internal.MathUtils;
 

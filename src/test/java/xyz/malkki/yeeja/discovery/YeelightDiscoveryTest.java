@@ -1,9 +1,10 @@
-package xyz.malkki.yeeja;
+package xyz.malkki.yeeja.discovery;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
+import xyz.malkki.yeeja.YeelightConstants;
 import xyz.malkki.yeeja.network.DatagramSocketFactory;
 import xyz.malkki.yeeja.network.InetAddressFactory;
 
@@ -15,8 +16,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
-import static org.junit.Assert.*;
 
 public class YeelightDiscoveryTest {
     private static final byte[] RESPONSE_DISCOVERY_FULL = String.join(YeelightConstants.LINE_BREAK,  "HTTP/1.1 200 OK",

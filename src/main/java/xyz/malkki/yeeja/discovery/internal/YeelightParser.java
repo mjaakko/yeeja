@@ -1,16 +1,17 @@
-package xyz.malkki.yeeja;
+package xyz.malkki.yeeja.discovery.internal;
+
+import xyz.malkki.yeeja.discovery.YeelightDevice;
 
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.*;
 import java.util.stream.Collectors;
 
 import static xyz.malkki.yeeja.YeelightConstants.*;
 
-class YeelightParser {
+public class YeelightParser {
     private YeelightParser() {}
 
-    static List<YeelightDevice> parseResponse(String response, String delimiter) {
+    public static List<YeelightDevice> parseResponse(String response, String delimiter) {
         return Arrays.stream(response.split(delimiter))
                 .map(String::trim)
                 .filter(resp -> !resp.isEmpty())
@@ -20,13 +21,13 @@ class YeelightParser {
                 .collect(Collectors.toList());
     }
 
-    static Map<String, String> parseSingleMessage(String message) {
+    public static Map<String, String> parseSingleMessage(String message) {
         return Arrays.stream(message.split(LINE_BREAK))
                 .filter(line -> line.contains(":"))
                 .collect(Collectors.toMap(line -> line.substring(0, line.indexOf(":")), line -> line.substring(line.indexOf(":")+1).trim()));
     }
 
-    static YeelightDevice parseMapToYeelightDevice(Map<String, String> map) {
+    public static YeelightDevice parseMapToYeelightDevice(Map<String, String> map) {
         URI location = URI.create(map.get("Location"));
         String address = location.getHost();
         int port = location.getPort();

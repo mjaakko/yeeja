@@ -1,4 +1,4 @@
-package xyz.malkki.yeeja;
+package xyz.malkki.yeeja.discovery;
 
 import org.junit.Test;
 

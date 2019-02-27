@@ -1,5 +1,6 @@
-package xyz.malkki.yeeja;
+package xyz.malkki.yeeja.discovery;
 
+import xyz.malkki.yeeja.discovery.internal.YeelightParser;
 import xyz.malkki.yeeja.network.DatagramSocketFactory;
 import xyz.malkki.yeeja.network.InetAddressFactory;
 

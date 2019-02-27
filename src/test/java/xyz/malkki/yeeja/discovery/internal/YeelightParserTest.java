@@ -1,11 +1,14 @@
-package xyz.malkki.yeeja;
+package xyz.malkki.yeeja.discovery.internal;
 
 import org.junit.Test;
+import xyz.malkki.yeeja.YeelightConstants;
+import xyz.malkki.yeeja.discovery.YeelightDevice;
 
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class YeelightParserTest {
     private static final String RESPONSE_DISCOVERY_FULL = String.join(YeelightConstants.LINE_BREAK,  "HTTP/1.1 200 OK",
