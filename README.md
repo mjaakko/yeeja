@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/mjaakko/yeeja.svg?branch=master)](https://travis-ci.org/mjaakko/yeeja)
+[![codecov](https://codecov.io/gh/mjaakko/yeeja/branch/master/graph/badge.svg)](https://codecov.io/gh/mjaakko/yeeja)
+![GitHub](https://img.shields.io/github/license/mjaakko/yeeja.svg)
 # yeeja
 
 **yeeja** is a Java implementation of Yeelight remote control protocol. 
