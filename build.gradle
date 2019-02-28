@@ -4,7 +4,7 @@ plugins {
     id 'maven-publish'
 }
 
-group 'xyz.malkki.yeeja'
+group 'xyz.malkki'
 version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
