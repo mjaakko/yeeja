@@ -30,9 +30,15 @@ public class CronGet extends YeelightCommand<CronGet.CronGetResponse> {
     }
 
     public static class CronGetResponse {
-        private final int type;
-        private final int delay;
-        private final int mix;
+        /**
+         * Type of cron action
+         */
+        public final int type;
+        /**
+         * Delay in minutes
+         */
+        public final int delay;
+        public final int mix;
 
         CronGetResponse(int type, int delay, int mix) {
             this.type = type;
