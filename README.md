@@ -30,3 +30,8 @@ dependencies {
 	implementation 'xyz.malkki:yeeja:1.0'
 }
 ```
+
+## Documentation
+
+* [Javadoc](https://javadoc.jitpack.io/xyz/malkki/yeeja/1.0/javadoc/)
+
