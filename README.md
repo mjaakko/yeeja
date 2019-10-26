@@ -33,5 +33,5 @@ dependencies {
 
 ## Documentation
 
-* [Javadoc](https://javadoc.jitpack.io/xyz/malkki/yeeja/1.1/javadoc/)
+* [Javadoc](https://javadoc.jitpack.io/com/github/mjaakko/yeeja/1.1/javadoc/index.html)
 
