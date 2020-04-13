@@ -1,5 +1,7 @@
 package xyz.malkki.yeeja.network;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.net.Socket;
 
 /**
@@ -11,6 +13,7 @@ public class DefaultSocketFactory implements SocketFactory {
      * @return A new unconnected socket
      */
     @Override
+    @NotNull
     public Socket create() {
         return new Socket();
     }

@@ -1,5 +1,7 @@
 package xyz.malkki.yeeja.network;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
@@ -13,5 +15,6 @@ public interface InetAddressFactory {
      * @return An InetAddress for the specified host
      * @throws UnknownHostException If no IP address is found for the host
      */
+    @NotNull
     InetAddress create(String host) throws UnknownHostException;
 }

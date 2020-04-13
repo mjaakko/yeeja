@@ -1,5 +1,6 @@
 package xyz.malkki.yeeja.connection.commands;
 
+import org.jetbrains.annotations.NotNull;
 import xyz.malkki.yeeja.connection.YeelightProps;
 
 import java.util.HashMap;
@@ -13,20 +14,23 @@ public class GetProp extends YeelightCommand<YeelightProps> {
     /**
      * @param props List of props that will be retrieved, see constants in {@link YeelightProps}
      */
-    public GetProp(String... props) {
+    public GetProp(@NotNull String... props) {
         this.props = props;
     }
 
+    @NotNull
     @Override
     public String getMethod() {
         return "get_prop";
     }
 
+    @NotNull
     @Override
     public Object[] getParams() {
         return props;
     }
 
+    @NotNull
     @Override
     public Function<List<Object>, YeelightProps> responseParser() {
         return response -> {

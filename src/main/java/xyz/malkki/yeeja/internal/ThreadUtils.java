@@ -1,5 +1,7 @@
 package xyz.malkki.yeeja.internal;
 
+import org.jetbrains.annotations.NotNull;
+
 public class ThreadUtils {
     private ThreadUtils() {}
 
@@ -8,7 +10,7 @@ public class ThreadUtils {
      * Note that if {@link InterruptedException} is thrown, it is quietly ignored
      * @param thread
      */
-    public static void quietlyInterruptAndJoin(Thread thread) {
+    public static void quietlyInterruptAndJoin(@NotNull Thread thread) {
         try {
             thread.interrupt();
             thread.join();

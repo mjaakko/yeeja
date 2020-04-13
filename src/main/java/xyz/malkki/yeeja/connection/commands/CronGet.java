@@ -1,6 +1,7 @@
 package xyz.malkki.yeeja.connection.commands;
 
 import com.google.gson.Gson;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Objects;
@@ -14,16 +15,19 @@ public class CronGet extends YeelightCommand<CronGet.CronGetResponse> {
         this.type = type;
     }
 
+    @NotNull
     @Override
     public String getMethod() {
         return "cron_get";
     }
 
+    @NotNull
     @Override
     public Object[] getParams() {
         return new Object[] { type };
     }
 
+    @NotNull
     @Override
     public Function<List<Object>, CronGetResponse> responseParser() {
         return response -> gson.fromJson(response.get(0).toString(), CronGetResponse.class);

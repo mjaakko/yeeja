@@ -1,5 +1,7 @@
 package xyz.malkki.yeeja.connection.commands;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.List;
 import java.util.function.Function;
 
@@ -7,16 +9,18 @@ public class SetScene extends YeelightCommand<Void> {
     private SceneClass sceneClass;
     private Object[] values;
 
-    public SetScene(SceneClass sceneClass, Object... values) {
+    public SetScene(@NotNull SceneClass sceneClass, @NotNull Object... values) {
         this.sceneClass = sceneClass;
         this.values = values;
     }
 
+    @NotNull
     @Override
     public String getMethod() {
         return "set_scene";
     }
 
+    @NotNull
     @Override
     public Object[] getParams() {
         Object[] params = new Object[1 + values.length];
@@ -26,6 +30,7 @@ public class SetScene extends YeelightCommand<Void> {
         return params;
     }
 
+    @NotNull
     @Override
     public Function<List<Object>, Void> responseParser() {
         return response -> null;
