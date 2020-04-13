@@ -1,5 +1,7 @@
 package xyz.malkki.yeeja.connection.commands;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.List;
 import java.util.function.Function;
 
@@ -9,22 +11,24 @@ public class SetPower extends YeelightCommand<Void> {
     private int duration;
     private PowerOnMode powerOnMode;
 
-    public SetPower(boolean power, Effect effect, int duration) {
-        this(power, effect, duration, null);
-    }
-
-    public SetPower(boolean power, Effect effect, int duration, PowerOnMode powerOnMode) {
+    public SetPower(boolean power, @NotNull Effect effect, int duration) {
         this.power = power;
         this.effect = effect;
         this.duration = duration;
+    }
+
+    public SetPower(boolean power, @NotNull Effect effect, int duration, @NotNull PowerOnMode powerOnMode) {
+        this(power, effect, duration);
         this.powerOnMode = powerOnMode;
     }
 
+    @NotNull
     @Override
     public String getMethod() {
         return "set_power";
     }
 
+    @NotNull
     @Override
     public Object[] getParams() {
         return powerOnMode == null ?
@@ -32,6 +36,7 @@ public class SetPower extends YeelightCommand<Void> {
             new Object[] { power ? "on" : "off", effect.paramValue, duration, powerOnMode.paramValue };
     }
 
+    @NotNull
     @Override
     public Function<List<Object>, Void> responseParser() {
         return response -> null;

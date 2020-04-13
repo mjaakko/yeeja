@@ -1,6 +1,8 @@
 package xyz.malkki.yeeja.connection;
 
 import com.google.gson.Gson;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import xyz.malkki.yeeja.discovery.YeelightDevice;
 import xyz.malkki.yeeja.connection.commands.YeelightCommand;
 import xyz.malkki.yeeja.connection.internal.CommandResponseRouter;
@@ -63,9 +65,12 @@ public class YeelightConnection implements AutoCloseable {
      * @return Opened YeelightConnection
      * @throws IOException If an IO error occurs
      */
-    public static YeelightConnection connect(SocketFactory socketFactory, InetAddressFactory inetAddressFactory, YeelightDevice yeelightDevice, YeelightNotificationListener notificationListener) throws IOException {
+    @NotNull
+    public static YeelightConnection connect(@NotNull SocketFactory socketFactory, @NotNull InetAddressFactory inetAddressFactory, @NotNull YeelightDevice yeelightDevice, @Nullable YeelightNotificationListener notificationListener) throws IOException {
         YeelightConnection connection = new YeelightConnection(socketFactory, inetAddressFactory, yeelightDevice.getAddress(), yeelightDevice.getPort());
-        connection.setNotificationListener(notificationListener);
+        if (notificationListener != null) {
+            connection.setNotificationListener(notificationListener);
+        }
         connection.open();
 
         return connection;
@@ -80,7 +85,7 @@ public class YeelightConnection implements AutoCloseable {
      * @param address Address to connect to
      * @param port Port to connect to
      */
-    public YeelightConnection(SocketFactory socketFactory, InetAddressFactory inetAddressFactory, String address, int port) {
+    public YeelightConnection(@NotNull SocketFactory socketFactory, @NotNull InetAddressFactory inetAddressFactory, @NotNull String address, int port) {
         this.socketFactory = socketFactory;
         this.inetAddressFactory = inetAddressFactory;
         this.address = address;
@@ -163,7 +168,8 @@ public class YeelightConnection implements AutoCloseable {
      * @throws IOException If an IO error occurs
      * @throws YeelightCommandException If the command was not run successfully
      */
-    public <R> R runCommand(YeelightCommand<R> command) throws IOException, YeelightCommandException {
+    @Nullable
+    public <R> R runCommand(@NotNull YeelightCommand<R> command) throws IOException, YeelightCommandException {
         int commandId = commandIdCounter.getAndIncrement();
 
         Map<String, Object> commandAsMap = new HashMap<>();
@@ -198,7 +204,7 @@ public class YeelightConnection implements AutoCloseable {
      * @param notificationListener Notification listener
      * @throws IllegalStateException If the connection was already opened
      */
-    public void setNotificationListener(YeelightNotificationListener notificationListener) {
+    public void setNotificationListener(@NotNull YeelightNotificationListener notificationListener) {
         if (connectionOpen.get()) {
             throw new IllegalStateException("Cannot set notification listener after the connection is opened");
         }
@@ -214,12 +220,12 @@ public class YeelightConnection implements AutoCloseable {
          * Callback when Yeelight properties have changed
          * @param props Properties that have changed
          */
-        void onNotification(YeelightProps props);
+        void onNotification(@NotNull YeelightProps props);
 
         /**
          * Callback when Yeelight connection fails due to an IO error
          * @param exception IOException that caused the connection to fail
          */
-        void onError(IOException exception);
+        void onError(@NotNull IOException exception);
     }
 }
