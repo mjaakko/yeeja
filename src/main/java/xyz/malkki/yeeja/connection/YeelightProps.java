@@ -1,5 +1,7 @@
 package xyz.malkki.yeeja.connection;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import xyz.malkki.yeeja.ColorMode;
 import xyz.malkki.yeeja.internal.CastFunction;
 import xyz.malkki.yeeja.internal.MathUtils;
@@ -64,7 +66,7 @@ public class YeelightProps {
 
     private Map<String, Object> props;
 
-    public YeelightProps(Map<String, Object> props) {
+    public YeelightProps(@NotNull Map<String, Object> props) {
         this.props = Collections.unmodifiableMap(props);
     }
 
@@ -73,7 +75,7 @@ public class YeelightProps {
      * @param propMeta Property type
      * @return true if the property is available, false otherwise
      */
-    public boolean hasProp(YeelightPropMeta propMeta) {
+    public boolean hasProp(@NotNull YeelightPropMeta propMeta) {
         return hasProp(propMeta.name());
     }
 
@@ -82,7 +84,7 @@ public class YeelightProps {
      * @param key Property key
      * @return true if the property is available, false otherwise
      */
-    public boolean hasProp(String key) {
+    public boolean hasProp(@NotNull String key) {
         return props.containsKey(key);
     }
 
@@ -90,6 +92,7 @@ public class YeelightProps {
      * Gets a list of properties available in this object
      * @return List of property keys
      */
+    @NotNull
     public Set<String> getAvailableProps() {
         return props.keySet();
     }
@@ -100,7 +103,8 @@ public class YeelightProps {
      * @param <T> Value type
      * @return Property value
      */
-    public <T> T getProp(YeelightPropMeta<T> propMeta) {
+    @Nullable
+    public <T> T getProp(@NotNull YeelightPropMeta<T> propMeta) {
         return getProp(propMeta.name());
     }
 
@@ -110,7 +114,8 @@ public class YeelightProps {
      * @param <T> Value type
      * @return Property value
      */
-    public <T> T getProp(String key) {
+    @Nullable
+    public <T> T getProp(@NotNull String key) {
         return (T)props.get(key);
     }
 
@@ -133,7 +138,8 @@ public class YeelightProps {
                 String.join("\n\t", getAvailableProps().stream().map(key -> key+": "+getProp(key).toString()).collect(Collectors.toList()));
     }
 
-    public static YeelightProps parseKnownPropsFromMap(Map<String, Object> map) {
+    @NotNull
+    public static YeelightProps parseKnownPropsFromMap(@NotNull Map<String, Object> map) {
         return new YeelightProps(map.entrySet().stream().collect(Collectors.toMap((e) -> e.getKey(), e -> {
           return KNOWN_PROPS.containsKey(e.getKey()) ?
                   KNOWN_PROPS.get(e.getKey()).apply(e.getValue()) :

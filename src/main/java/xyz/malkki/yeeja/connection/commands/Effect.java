@@ -1,11 +1,13 @@
 package xyz.malkki.yeeja.connection.commands;
 
+import org.jetbrains.annotations.NotNull;
+
 public enum Effect {
     SUDDEN("sudden"), SMOOTH("smooth");
 
-    final String paramValue;
+    @NotNull final String paramValue;
 
-    Effect(String paramValue) {
+    Effect(@NotNull String paramValue) {
         this.paramValue = paramValue;
     }
 }

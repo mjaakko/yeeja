@@ -1,5 +1,7 @@
 package xyz.malkki.yeeja;
 
+import org.jetbrains.annotations.Nullable;
+
 import java.util.Arrays;
 import java.util.Map;
 import java.util.function.Function;
@@ -30,6 +32,7 @@ public enum ColorMode {
 
     private static Map<Integer, ColorMode> BY_MODE_INT = Arrays.stream(ColorMode.values()).collect(Collectors.toMap(cm -> cm.mode, Function.identity()));
 
+    @Nullable
     public static ColorMode findByMode(int mode) {
         return BY_MODE_INT.get(mode);
     }

@@ -1,5 +1,6 @@
 package xyz.malkki.yeeja.discovery;
 
+import org.jetbrains.annotations.NotNull;
 import xyz.malkki.yeeja.ColorMode;
 import xyz.malkki.yeeja.connection.YeelightConnection;
 import xyz.malkki.yeeja.connection.commands.YeelightCommand;
@@ -28,7 +29,7 @@ public class YeelightDevice {
     private int saturation;
     private String name;
 
-    public YeelightDevice(String address, int port, String id, YeelightModel model, int firmwareVersion, Set<String> supportedFunctions, boolean power, int brightness, ColorMode colorMode, int colorTemperature, int rgb, int hue, int saturation, String name) {
+    public YeelightDevice(@NotNull String address, int port, @NotNull String id, @NotNull YeelightModel model, int firmwareVersion, @NotNull Set<@NotNull String> supportedFunctions, boolean power, int brightness, @NotNull ColorMode colorMode, int colorTemperature, int rgb, int hue, int saturation, @NotNull String name) {
         this.address = address;
         this.port = port;
         this.id = id;
@@ -49,6 +50,7 @@ public class YeelightDevice {
      * Gets the Yeelight host address
      * @return Yeelight host address
      */
+    @NotNull
     public String getAddress() {
         return address;
     }
@@ -57,6 +59,7 @@ public class YeelightDevice {
      * Gets the Yeelight connection port
      * @return Yeelight connection port
      */
+    @NotNull
     public int getPort() {
         return port;
     }
@@ -65,6 +68,7 @@ public class YeelightDevice {
      * Gets the Yeelight device ID
      * @return Yeelight device ID
      */
+    @NotNull
     public String getId() {
         return id;
     }
@@ -73,6 +77,7 @@ public class YeelightDevice {
      * Gets the Yeelight model
      * @return Yeelight model
      */
+    @NotNull
     public YeelightModel getModel() {
         return model;
     }
@@ -90,7 +95,8 @@ public class YeelightDevice {
      * @return List of functions that can be used with the Yeelight device
      * @see YeelightCommand#getMethod()
      */
-    public Set<String> getSupportedFunctions() {
+    @NotNull
+    public Set<@NotNull String> getSupportedFunctions() {
         return supportedFunctions;
     }
 
@@ -114,6 +120,7 @@ public class YeelightDevice {
      * Gets the color mode that the Yeelight is using
      * @return Color mode
      */
+    @NotNull
     public ColorMode getColorMode() {
         return colorMode;
     }

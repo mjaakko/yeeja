@@ -1,5 +1,6 @@
 package xyz.malkki.yeeja.discovery;
 
+import org.jetbrains.annotations.NotNull;
 import xyz.malkki.yeeja.discovery.internal.YeelightParser;
 import xyz.malkki.yeeja.network.DatagramSocketFactory;
 import xyz.malkki.yeeja.network.InetAddressFactory;
@@ -34,7 +35,7 @@ public class YeelightDiscovery {
      * @param datagramSocketFactory Factory for generating datagram socket that is used for Yeelight discovery
      * @param inetAddressFactory Factory for creating InetAddress for Yeelight discovery protocol
      */
-    public YeelightDiscovery(DatagramSocketFactory datagramSocketFactory, InetAddressFactory inetAddressFactory) {
+    public YeelightDiscovery(@NotNull DatagramSocketFactory datagramSocketFactory, @NotNull InetAddressFactory inetAddressFactory) {
         this.datagramSocketFactory = datagramSocketFactory;
         this.inetAddressFactory = inetAddressFactory;
     }

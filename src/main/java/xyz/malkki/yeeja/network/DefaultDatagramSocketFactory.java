@@ -1,5 +1,7 @@
 package xyz.malkki.yeeja.network;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.net.DatagramSocket;
 import java.net.SocketException;
 
@@ -13,6 +15,7 @@ public class DefaultDatagramSocketFactory implements DatagramSocketFactory {
      * @throws SocketException If the socket creation fails for some reason
      */
     @Override
+    @NotNull
     public DatagramSocket create() throws SocketException {
         return new DatagramSocket();
     }

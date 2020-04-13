@@ -1,5 +1,8 @@
 package xyz.malkki.yeeja.connection;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.util.Objects;
 import java.util.function.Function;
 
@@ -11,7 +14,7 @@ public class YeelightPropMeta<T> implements Function<Object, T> {
     private String name;
     private Function<Object, T> valueParser;
 
-    private YeelightPropMeta(String name, Function<Object, T> valueParser) {
+    private YeelightPropMeta(@NotNull String name, @NotNull Function<Object, T> valueParser) {
         this.name = name;
         this.valueParser = valueParser;
     }
@@ -20,12 +23,14 @@ public class YeelightPropMeta<T> implements Function<Object, T> {
      * Name of the property, i.e. property key
      * @return Property key
      */
+    @NotNull
     public String name() {
         return name;
     }
 
     @Override
-    public T apply(Object o) {
+    @Nullable
+    public T apply(@Nullable Object o) {
         return valueParser.apply(o);
     }
 
@@ -42,7 +47,8 @@ public class YeelightPropMeta<T> implements Function<Object, T> {
         return Objects.hash(name);
     }
 
-    public static <T> YeelightPropMeta create(String name, Function<Object, T> valueParser) {
+    @NotNull
+    public static <T> YeelightPropMeta create(@NotNull String name, @NotNull Function<Object, T> valueParser) {
         return new YeelightPropMeta(name, valueParser);
     }
 }

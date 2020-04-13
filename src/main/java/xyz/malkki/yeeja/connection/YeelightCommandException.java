@@ -1,5 +1,7 @@
 package xyz.malkki.yeeja.connection;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Objects;
 
 /**
@@ -14,7 +16,7 @@ public class YeelightCommandException extends Exception {
      * @param code Error code
      * @param message Error message
      */
-    public YeelightCommandException(int code, String message) {
+    public YeelightCommandException(int code, @NotNull String message) {
         super(message);
 
         this.code = code;

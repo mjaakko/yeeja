@@ -1,6 +1,7 @@
 package xyz.malkki.yeeja.connection.internal;
 
 import com.google.gson.Gson;
+import org.jetbrains.annotations.NotNull;
 import xyz.malkki.yeeja.YeelightConstants;
 
 import java.io.IOException;
@@ -17,7 +18,7 @@ public class OutputThread extends Thread {
 
     private BlockingQueue<Map<String, Object>> commandQueue;
 
-    public OutputThread(ThreadGroup threadGroup, Socket socket, Gson gson, BlockingQueue<Map<String, Object>> commandQueue) {
+    public OutputThread(@NotNull ThreadGroup threadGroup, @NotNull Socket socket, @NotNull Gson gson, @NotNull BlockingQueue<Map<String, Object>> commandQueue) {
         super(threadGroup, String.format(THREAD_NAME_FORMAT, socket.getInetAddress().getHostAddress(), socket.getPort()));
 
         this.socket = socket;

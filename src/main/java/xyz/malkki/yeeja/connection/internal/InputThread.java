@@ -1,6 +1,8 @@
 package xyz.malkki.yeeja.connection.internal;
 
 import com.google.gson.Gson;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import xyz.malkki.yeeja.connection.YeelightConnection;
 import xyz.malkki.yeeja.connection.YeelightProps;
 
@@ -21,7 +23,7 @@ public class InputThread extends Thread {
     private YeelightConnection.YeelightNotificationListener notificationListener;
     private CommandResponseRouter responseRouter;
 
-    public InputThread(ThreadGroup threadGroup, Socket socket, Gson gson, YeelightConnection.YeelightNotificationListener notificationListener, CommandResponseRouter responseRouter) {
+    public InputThread(@NotNull ThreadGroup threadGroup, @NotNull Socket socket, @NotNull Gson gson, @Nullable YeelightConnection.YeelightNotificationListener notificationListener, @NotNull CommandResponseRouter responseRouter) {
         super(threadGroup, String.format(THREAD_NAME_FORMAT, socket.getInetAddress().getHostAddress(), socket.getPort()));
 
         this.socket = socket;
@@ -61,11 +63,11 @@ public class InputThread extends Thread {
         }
     }
 
-    private static boolean isNotification(Map<String, Object> map) {
+    private static boolean isNotification(@NotNull Map<String, Object> map) {
         return map.containsKey("method");
     }
 
-    private static boolean isCommandResponse(Map<String, Object> map) {
+    private static boolean isCommandResponse(@NotNull Map<String, Object> map) {
         return map.containsKey("id");
     }
 }
