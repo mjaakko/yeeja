@@ -50,7 +50,7 @@ for (YeelightDevice yeelight : yeelights) {
 ### Run command
 
 ```java
-Yeelight yeelight = /* YeelightDevice from previous example */
+YeelightDevice yeelight = /* YeelightDevice from previous example */
 
 try (YeelightConnection connection = YeelightConnection.connect(new DefaultSocketFactory(), new DefaultInetAddressFactory(), yeelight, null /*No notification listener*/)) {
   //Toggle power
